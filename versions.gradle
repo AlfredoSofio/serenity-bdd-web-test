@@ -1,0 +1,5 @@
+ext {
+    serenityVersion = '4.0.28'
+    slf4jVersion = '2.0.9'
+    jtdsVersion = '1.3.1'
+}

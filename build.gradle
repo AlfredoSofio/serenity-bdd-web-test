@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id "net.serenity-bdd.serenity-gradle-plugin" version "4.0.27"
+}
+
+apply from: 'versions.gradle'
+apply from: 'dependencies.gradle'
+
+group = "com.demoqa"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.1'
+
+    implementation libs.serenityScreenplay
+    implementation libs.serenityCore
+    implementation libs.serenityJunit
+    implementation libs.serenityCucumber
+    implementation libs.serenityScreenplayWebDriver
+    implementation libs.slf4j
+    implementation libs.jtds
+    implementation 'io.github.jopenlibs:vault-java-driver:6.2.0'
+    implementation 'com.microsoft.sqlserver:mssql-jdbc:9.4.1.jre11'
+}
+
+serenity {
+    reports = ["single-page-html"]
+    requirementsDir = "src/test/resources/features"
+}
+
+test {
+    println "hilos disponibles " + Runtime.runtime.availableProcessors()
+    testLogging.showStandardStreams true
+    maxParallelForks = 10
+    useJUnit()
+    systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+}
+gradle.startParameter.continueOnFailure = true
+test.finalizedBy(aggregate)

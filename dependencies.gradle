@@ -1,0 +1,11 @@
+ext.libs = [
+
+        serenityScreenplay : "net.serenity-bdd:serenity-screenplay:$serenityVersion",
+        serenityCore :  "net.serenity-bdd:serenity-core:$serenityVersion",
+        serenityJunit: "net.serenity-bdd:serenity-junit:$serenityVersion",
+        serenityCucumber: "net.serenity-bdd:serenity-cucumber:$serenityVersion",
+        serenityScreenplayWebDriver: "net.serenity-bdd:serenity-screenplay-webdriver:$serenityVersion",
+        slf4j :  "org.slf4j:slf4j-simple:$slf4jVersion",
+        jtds : "net.sourceforge.jtds:jtds:$jtdsVersion"
+
+]
