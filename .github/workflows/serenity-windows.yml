@@ -12,11 +12,7 @@ on:
 
 jobs:
   run-tests:
-    runs-on: ${{ matrix.os}}
-    strategy:
-      matrix:
-        #version: [12, 14]
-        os: [ubuntu-latest, windows-latest]
+    runs-on: windows-latest
 
     steps:
       - name: Checkout del código
