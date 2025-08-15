@@ -1,6 +1,7 @@
 name: Serenity BDD Tests - Windows
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
