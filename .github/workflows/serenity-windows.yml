@@ -28,7 +28,7 @@ jobs:
         shell: bash  # Usamos bash para que funcione el chmod en Windows
 
       - name: Ejecutar pruebas Serenity BDD
-        run: .\gradlew.bat clean test aggregate
+        run: gradle clean test --stacktrace --tests RunnerLoginUser -i
         shell: cmd
 
       - name: Subir reportes de Serenity como artefacto
