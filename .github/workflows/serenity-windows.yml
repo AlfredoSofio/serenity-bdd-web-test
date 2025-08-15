@@ -20,6 +20,7 @@ jobs:
       matrix:
         os: [windows-latest]
         java-version: ['17']
+        browser: [chrome, firefox]
 
 
     steps:
@@ -38,12 +39,12 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Ejecutar pruebas Serenity BDD
-        run: ./gradlew clean test --stacktrace -i
+        run: ./gradlew clean test --stacktrace -i -Dserenity.browser.driver=${{ matrix.browser }}
         shell: bash
 
       - name: Subir reportes de Serenity como artefacto
         uses: actions/upload-artifact@v4
         with:
-          name: serenity-report-${{ matrix.os }}
+          name: serenity-report-${{ matrix.os }}-${{ matrix.browser }}
           path: target/site/serenity
           compression-level: 9
