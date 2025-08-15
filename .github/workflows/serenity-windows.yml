@@ -30,8 +30,12 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: ${{matrix.java-version}}
+          java-version: ${{ matrix.java-version }}
           cache: 'gradle'
+
+      - name: Dar permisos de ejecución al Gradle Wrapper
+        if: startsWith(runner.os, 'Linux')
+        run: chmod +x ./gradlew
 
       - name: Ejecutar pruebas Serenity BDD
         run: ./gradlew clean test --stacktrace -i
