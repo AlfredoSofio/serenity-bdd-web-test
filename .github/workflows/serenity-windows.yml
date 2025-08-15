@@ -35,7 +35,7 @@ jobs:
 
       - name: Ejecutar pruebas Serenity BDD
         run: ./gradlew clean test --stacktrace -i
-        shell: cmd
+        shell: bash
 
       - name: Subir reportes de Serenity como artefacto
         uses: actions/upload-artifact@v4
