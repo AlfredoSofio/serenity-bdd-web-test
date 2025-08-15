@@ -1,0 +1,38 @@
+name: Serenity BDD Tests - Windows
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - 'feature/*'
+      - 'fix/*'
+  pull_request:
+
+jobs:
+  run-tests:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3
+
+      - name: Configurar Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Dar permisos al Gradle Wrapper
+        run: chmod +x gradlew
+        shell: bash  # Usamos bash para que funcione el chmod en Windows
+
+      - name: Ejecutar pruebas Serenity BDD
+        run: .\gradlew.bat clean test aggregate
+        shell: cmd
+
+      - name: Subir reportes de Serenity como artefacto
+        uses: actions/upload-artifact@v3
+        with:
+          name: serenity-report
+          path: target/site/serenity
